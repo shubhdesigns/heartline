@@ -1,61 +1,52 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Instagram } from 'lucide-react';
 
-const Contact: React.FC = () => {
+const Contact = () => {
   return (
-    <section id="contact" className="section-padding">
+    <section id="contact" className="py-20 bg-gradient-to-br from-blue-50 to-pink-50">
       <div className="container-custom">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Get in Touch</h2>
-            <p className="text-gray-600 mb-8">
-              Have questions about our solutions or how we can help? Reach out to us on Instagram.
-            </p>
-            
-            <div className="space-y-6 mb-8">
-              <div className="flex items-start space-x-4">
-                <div className="bg-primary bg-opacity-10 rounded-full p-3">
-                  <Instagram className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-900">Follow Us on Instagram</h3>
-                  <p className="text-gray-600">@the_heartlinefoundation</p>
-                  <a 
-                    href="https://www.instagram.com/the_heartlinefoundation/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-primary hover:underline mt-2 inline-block"
-                  >
-                    Visit our Instagram
-                  </a>
-                </div>
-              </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl font-bold text-[#1a2b4b] mb-6">
+            Connect With Us
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Follow us on Instagram to stay updated with our latest initiatives and community events.
+          </p>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="max-w-lg mx-auto"
+        >
+          <div className="bg-white rounded-2xl p-8 shadow-lg text-center">
+            <div className="w-20 h-20 bg-gradient-to-br from-[#4D96FF] to-[#FF6B6B] rounded-full flex items-center justify-center mx-auto mb-6">
+              <Instagram className="w-10 h-10 text-white" />
             </div>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-lg p-8"
-          >
-            <h3 className="text-2xl font-semibold mb-6">Our Mission</h3>
+            <h3 className="text-2xl font-bold text-[#1a2b4b] mb-4">
+              Follow Us on Instagram
+            </h3>
             <p className="text-gray-600 mb-6">
-              The Heartline Foundation is dedicated to transforming cardiovascular healthcare through AI innovation. As a student-led nonprofit, we combine cutting-edge technology with community support to make heart health more accessible and effective.
+              @the_heartlinefoundation
             </p>
-            <div className="text-center">
-              <div className="text-5xl font-bold mb-4 gradient-text">10,000</div>
-              <p className="text-xl text-gray-700">People to Help</p>
-            </div>
-          </motion.div>
-        </div>
+            <a
+              href="https://www.instagram.com/the_heartlinefoundation/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center bg-gradient-to-r from-[#4D96FF] to-[#FF6B6B] text-white px-8 py-3 rounded-lg font-medium hover:shadow-lg transition-shadow"
+            >
+              Visit Our Instagram
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

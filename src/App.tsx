@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -7,35 +7,25 @@ import Team from './components/Team';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 
-function App() {
-  useEffect(() => {
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        
-        const targetId = this.getAttribute('href');
-        if (!targetId || targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80, // Offset for fixed header
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
-  }, []);
+const LoadingFallback = () => (
+  <div className="w-full h-full flex items-center justify-center">
+    <div className="animate-pulse text-primary">Loading...</div>
+  </div>
+);
 
+function App() {
   return (
     <div className="min-h-screen bg-white">
       <Navbar />
-      <Hero />
-      <About />
-      <Solutions />
-      <Team />
-      <Contact />
+      <main>
+        <Suspense fallback={<LoadingFallback />}>
+          <Hero />
+          <About />
+          <Solutions />
+          <Team />
+          <Contact />
+        </Suspense>
+      </main>
       <Footer />
     </div>
   );

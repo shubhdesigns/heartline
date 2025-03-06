@@ -1,18 +1,17 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import { motion } from 'framer-motion';
 
-const Hero: React.FC = () => {
+const LoadingFallback = () => (
+  <div className="w-full h-full flex items-center justify-center">
+    <div className="animate-pulse text-primary">Loading...</div>
+  </div>
+);
+
+const Hero = () => {
   return (
-    <section className="min-h-screen flex items-center relative overflow-hidden pt-20">
-      <div className="absolute inset-0 z-0">
-        <div className="absolute right-0 top-0 w-1/2 h-full">
-          <div className="relative w-full h-full">
-            {/* Gradient Circles */}
-            <div className="absolute right-0 top-0 w-96 h-96 bg-pink-100 rounded-full filter blur-3xl opacity-30"></div>
-            <div className="absolute right-48 top-48 w-96 h-96 bg-blue-100 rounded-full filter blur-3xl opacity-30"></div>
-          </div>
-        </div>
-      </div>
+    <section className="min-h-screen flex items-center relative overflow-hidden">
+      {/* Background gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-pink-50 opacity-50"></div>
       
       <div className="container-custom relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -21,53 +20,100 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight text-[#1a2b4b]">
               Advancing
               <br />
-              <span className="text-[#4D96FF]">Cardiovascular</span>
+              <motion.span 
+                className="text-[#4D96FF]"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
+              >
+                Cardiovascular
+              </motion.span>
               <br />
               Health Through
               <br />
-              Innovation
+              <motion.span
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+              >
+                Innovation
+              </motion.span>
             </h1>
-            <p className="text-gray-600 text-lg mb-8 max-w-lg">
+            <motion.p 
+              className="text-gray-600 text-lg mt-6 mb-8 max-w-lg"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+            >
               The Heartline Foundation is dedicated to improving heart health through cutting-edge technology, research, and compassionate care.
-            </p>
-            <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-              <a href="#solutions" className="btn-primary">
+            </motion.p>
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-4"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.8 }}
+            >
+              <a 
+                href="#solutions" 
+                className="bg-gradient-to-r from-[#4D96FF] to-[#FF6B6B] text-white px-8 py-3 rounded-full font-medium hover:shadow-lg transition-shadow"
+              >
                 Explore Solutions
               </a>
-              <a href="#about" className="btn-secondary">
+              <a 
+                href="#about" 
+                className="border-2 border-[#4D96FF] text-[#4D96FF] px-8 py-3 rounded-full font-medium hover:bg-blue-50 transition-colors"
+              >
                 Learn More
               </a>
-            </div>
+            </motion.div>
           </motion.div>
-          
+
           <motion.div
+            className="relative flex items-center justify-center"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative"
+            transition={{ delay: 0.4, duration: 0.8 }}
           >
-            <div className="relative w-full aspect-square">
-              {/* Gradient Heart */}
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-4/5 h-4/5 relative">
-                  <div className="absolute inset-0 bg-gradient-to-br from-pink-400 to-blue-500 rounded-full filter blur-xl opacity-50"></div>
-                  <svg viewBox="0 0 512 512" className="w-full h-full relative z-10">
-                    <path
-                      d="M256 448l-30.29-27.52C118.22 319.28 48 260.24 48 176.65 48 114.54 98.54 64 160.65 64c34.84 0 68.29 16.43 89.35 42.59C271.06 80.43 304.51 64 339.35 64 401.46 64 452 114.54 452 176.65c0 83.59-70.22 142.63-177.71 243.83L256 448z"
-                      fill="url(#heart-gradient)"
-                    />
-                    <defs>
-                      <linearGradient id="heart-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#FF6B6B" />
-                        <stop offset="100%" stopColor="#4D96FF" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
-                </div>
-              </div>
+            <div className="relative w-96 h-96">
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-br from-[#4D96FF] to-[#FF6B6B] rounded-full filter blur-3xl opacity-30"
+                animate={{ 
+                  scale: [1, 1.1, 1],
+                  opacity: [0.3, 0.5, 0.3]
+                }}
+                transition={{ 
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div 
+                className="w-full h-full relative z-10"
+                animate={{ 
+                  scale: [1, 1.05, 1],
+                }}
+                transition={{ 
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                <svg viewBox="0 0 24 24" className="w-full h-full">
+                  <defs>
+                    <linearGradient id="heartGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#4D96FF" />
+                      <stop offset="100%" stopColor="#FF6B6B" />
+                    </linearGradient>
+                  </defs>
+                  <path 
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                    fill="url(#heartGradient)"
+                  />
+                </svg>
+              </motion.div>
             </div>
           </motion.div>
         </div>
@@ -79,7 +125,12 @@ const Hero: React.FC = () => {
         animate={{ scale: 1 }}
         transition={{ delay: 1, type: "spring" }}
         className="fixed bottom-8 right-8 bg-white p-4 rounded-full shadow-lg z-50 hover:shadow-xl transition-shadow"
-        onClick={() => window.location.href = '#contact'}
+        onClick={() => {
+          const contact = document.getElementById('contact');
+          if (contact) {
+            contact.scrollIntoView({ behavior: 'smooth' });
+          }
+        }}
       >
         <svg className="w-6 h-6 text-[#4D96FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />

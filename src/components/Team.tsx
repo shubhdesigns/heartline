@@ -1,73 +1,93 @@
-import React from 'react';
+import type { FC } from 'react';
 import { motion } from 'framer-motion';
-import { Instagram } from 'lucide-react';
 
-const Team: React.FC = () => {
+const teamMembers = [
+  {
+    name: "Mithun Gopinath",
+    role: "Founder",
+    image: "/mithun.jpg",
+    bio: "Leading the vision of revolutionizing cardiovascular healthcare through innovative technology and student-led initiatives"
+  },
+  {
+    name: "Navin Maji",
+    role: "Co-President",
+    image: "/navin.jpg",
+    bio: "Driving innovation in healthcare technology and leading strategic initiatives for community impact"
+  },
+  {
+    name: "Shubh Patel",
+    role: "Vice President & Web Developer",
+    image: "/shubh.jpg",
+    bio: "Leading technical development and implementing innovative web solutions for healthcare accessibility"
+  },
+  {
+    name: "Pranav Katta",
+    role: "Treasurer",
+    image: "/pranav.jpg",
+    bio: "Overseeing financial planning and resource allocation to support our healthcare initiatives"
+  },
+  {
+    name: "Rehaan Grover",
+    role: "Marketing Coordinator",
+    image: "/rehaan.jpg",
+    bio: "Spearheading marketing strategies and building meaningful connections within the healthcare community"
+  },
+  {
+    name: "Kuhu Barole",
+    role: "Volunteer Coordinator",
+    image: "/kuhu.jpg",
+    bio: "Coordinating volunteer initiatives and fostering community engagement in healthcare outreach programs"
+  }
+];
+
+const Team: FC = () => {
   return (
-    <section id="team" className="section-padding bg-gray-50">
+    <section id="team" className="py-20 bg-gradient-to-br from-blue-50 to-pink-50">
       <div className="container-custom">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Team</h2>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl font-bold text-[#1a2b4b] mb-6">
+            Our Leadership Team
+          </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            A group of passionate high school students dedicated to revolutionizing cardiovascular care through AI innovation.
+            Meet the dedicated team of students leading the Heartline Foundation's mission to revolutionize cardiovascular healthcare.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-lg overflow-hidden"
-          >
-            <div className="aspect-w-16 aspect-h-9 relative">
-              <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=2000&q=80"
-                alt="Student Leaders"
-                className="w-full h-64 object-cover"
-              />
-            </div>
-            <div className="p-8">
-              <h3 className="text-2xl font-bold mb-2">Student Leaders</h3>
-              <p className="text-gray-600 mb-6">
-                Our team consists of dedicated high school students who are passionate about leveraging artificial intelligence 
-                to transform cardiovascular healthcare. We combine our technical skills with a deep commitment to community service, 
-                organizing fundraisers and donation drives to support heart patients in need.
-              </p>
-              <div className="flex items-center justify-between">
-                <div className="flex items-center space-x-2">
-                  <span className="text-sm text-gray-500">Follow us:</span>
-                  <a 
-                    href="https://www.instagram.com/the_heartlinefoundation/" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-gray-400 hover:text-[#FF6B6B] transition-colors"
-                  >
-                    <Instagram size={20} />
-                  </a>
-                </div>
-                <div className="text-right">
-                  <p className="text-sm text-gray-500">Est. 2025</p>
-                </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {teamMembers.map((member, index) => (
+            <motion.div
+              key={member.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+            >
+              <div className="relative mb-6">
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  className="w-32 h-32 rounded-full mx-auto object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#4D96FF] to-[#FF6B6B] rounded-full opacity-0 hover:opacity-20 transition-opacity" />
               </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
-          >
-            <p className="text-xl text-gray-600">
-              Join us in our mission to help <span className="font-bold text-[#4D96FF]">10,000 people</span> through innovative cardiovascular care
-            </p>
-            <a href="#contact" className="btn-primary mt-6 inline-block">
-              Get Involved
-            </a>
-          </motion.div>
+              <h3 className="text-xl font-semibold text-[#1a2b4b] mb-2 text-center">
+                {member.name}
+              </h3>
+              <p className="text-[#4D96FF] font-medium mb-2 text-center">
+                {member.role}
+              </p>
+              <p className="text-gray-600 text-sm mb-4 text-center">
+                {member.bio}
+              </p>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>

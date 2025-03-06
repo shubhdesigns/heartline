@@ -1,18 +1,20 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Activity, Heart, Brain, Search } from 'lucide-react';
+import type { FC, ComponentType, ElementType } from 'react';
 import ECGAnalysis from './solutions/ECGAnalysis';
 import Chatbot from './solutions/Chatbot';
 import HeartRateMonitor from './solutions/HeartRateMonitor';
 import ResearchHub from './solutions/ResearchHub';
+import HeartMonitor from './solutions/HeartMonitor';
 
 interface Solution {
   id: string;
   title: string;
   description: string;
-  icon: any;
+  icon: ElementType;
   color: string;
-  component: React.ComponentType;
+  component: ComponentType;
 }
 
 const solutions: Solution[] = [
@@ -33,12 +35,12 @@ const solutions: Solution[] = [
     component: Chatbot
   },
   {
-    id: 'monitor',
-    title: "Health Monitor",
-    description: "Real-time heart rate monitoring and analysis using your device's camera.",
+    id: 'heart-monitor',
+    title: 'Heart Rate Monitor',
+    description: 'Track your heart rate, understand your zones, and get personalized recommendations based on your activity.',
     icon: Heart,
-    color: "from-[#4D96FF] to-[#00CED1]",
-    component: HeartRateMonitor
+    color: 'from-red-400 to-pink-500',
+    component: HeartMonitor
   },
   {
     id: 'research',
@@ -50,7 +52,7 @@ const solutions: Solution[] = [
   }
 ];
 
-const Solutions = () => {
+const Solutions: FC = () => {
   const [activeSolution, setActiveSolution] = useState<string | null>(null);
 
   const handleSolutionClick = (solutionId: string) => {
@@ -80,48 +82,52 @@ const Solutions = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {solutions.map((solution, index) => (
-            <motion.div
-              key={solution.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.2 }}
-              className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow cursor-pointer group ${
-                activeSolution === solution.id ? 'ring-2 ring-[#4D96FF]' : ''
-              }`}
-              onClick={() => handleSolutionClick(solution.id)}
-            >
-              <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${solution.color} p-4 mb-6 transform group-hover:scale-110 transition-transform`}>
-                <solution.icon className="w-full h-full text-white" />
-              </div>
-              <h3 className="text-2xl font-semibold text-[#1a2b4b] mb-4">
-                {solution.title}
-              </h3>
-              <p className="text-gray-600">
-                {solution.description}
-              </p>
-              <div className="mt-6 flex items-center text-[#4D96FF] font-medium">
-                <span>{activeSolution === solution.id ? 'Close' : 'Try Now'}</span>
-                <svg className="w-5 h-5 ml-2 transform group-hover:translate-x-2 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
-              </div>
-            </motion.div>
-          ))}
+          {solutions.map((solution, index) => {
+            const Icon = solution.icon;
+            return (
+              <motion.div
+                key={solution.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.2 }}
+                className="relative"
+              >
+                <button
+                  onClick={() => handleSolutionClick(solution.id)}
+                  className="w-full text-left"
+                >
+                  <div className={`bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow cursor-pointer group ${
+                    activeSolution === solution.id ? 'ring-2 ring-[#4D96FF]' : ''
+                  }`}>
+                    <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${solution.color} p-4 mb-6 transform group-hover:scale-110 transition-transform`}>
+                      <Icon className="w-full h-full text-white" />
+                    </div>
+                    <h3 className="text-2xl font-semibold text-[#1a2b4b] mb-4">
+                      {solution.title}
+                    </h3>
+                    <p className="text-gray-600">
+                      {solution.description}
+                    </p>
+                  </div>
+                </button>
+                
+                {activeSolution === solution.id && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                    className="mt-12"
+                  >
+                    <div className="bg-white rounded-xl shadow-lg overflow-hidden">
+                      <solution.component />
+                    </div>
+                  </motion.div>
+                )}
+              </motion.div>
+            );
+          })}
         </div>
-
-        {ActiveComponent && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
-            className="mt-12"
-          >
-            <ActiveComponent />
-          </motion.div>
-        )}
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#gradient-bg)" fill-opacity="0.1"/>
+  
+  <!-- Heart Shape -->
+  <path d="M256 448l-30.29-27.52C118.22 319.28 48 260.24 48 176.65 48 114.54 98.54 64 160.65 64c34.84 0 68.29 16.43 89.35 42.59C271.06 80.43 304.51 64 339.35 64 401.46 64 452 114.54 452 176.65c0 83.59-70.22 142.63-177.71 243.83L256 448z"
+    fill="url(#heart-gradient)"
+    opacity="0.9"
+  />
+  
+  <!-- Circuit Lines -->
+  <path d="M128 256h256M256 128v256" stroke="#4D96FF" stroke-width="4" stroke-linecap="round" stroke-dasharray="8 8"/>
+  <circle cx="256" cy="256" r="120" stroke="#4D96FF" stroke-width="4" stroke-dasharray="8 8" fill="none"/>
+  
+  <!-- AI Text -->
+  <text x="256" y="270" font-family="Arial" font-size="64" font-weight="bold" fill="#4D96FF" text-anchor="middle">AI</text>
+  
+  <!-- Gradients -->
+  <defs>
+    <linearGradient id="gradient-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#FF6B6B" />
+      <stop offset="100%" stopColor="#4D96FF" />
+    </linearGradient>
+    <linearGradient id="heart-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stopColor="#FF6B6B" />
+      <stop offset="100%" stopColor="#4D96FF" />
+    </linearGradient>
+  </defs>
+</svg> 

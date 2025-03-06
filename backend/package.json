@@ -1,0 +1,35 @@
+{
+  "name": "heartline-backend",
+  "version": "1.0.0",
+  "description": "Backend for Heartline Foundation AI Solutions",
+  "main": "src/index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon src/index.ts",
+    "build": "tsc",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "mongoose": "^7.5.0",
+    "openai": "^4.20.0",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "express-validator": "^7.0.1"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.20",
+    "@types/cors": "^2.8.15",
+    "@types/node": "^20.8.2",
+    "@types/bcryptjs": "^2.4.5",
+    "@types/jsonwebtoken": "^9.0.4",
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1",
+    "nodemon": "^3.0.1",
+    "jest": "^29.7.0",
+    "@types/jest": "^29.5.4",
+    "ts-jest": "^29.1.1"
+  }
+} 

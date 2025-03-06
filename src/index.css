@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary: #4D96FF;
+  --secondary: #FF6B6B;
+  --accent: #4D96FF;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  @apply text-gray-800;
+}
+
+.gradient-text {
+  @apply bg-clip-text text-transparent;
+  background-image: linear-gradient(to right, #FF6B6B, #4D96FF);
+}
+
+.hero-gradient {
+  background: radial-gradient(circle at 50% 50%, rgba(77, 150, 255, 0.05) 0%, rgba(255, 255, 255, 0) 70%);
+}
+
+.section-padding {
+  @apply py-16 md:py-24;
+}
+
+.container-custom {
+  @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-[#4D96FF] to-[#FF6B6B] text-white font-medium py-3 px-6 rounded-full shadow-md hover:shadow-lg transition-all duration-300 inline-flex items-center justify-center;
+}
+
+.btn-secondary {
+  @apply bg-white text-[#4D96FF] border border-[#4D96FF] font-medium py-3 px-6 rounded-full shadow-sm hover:shadow-md transition-all duration-300 inline-flex items-center justify-center;
+}
+
+.card {
+  @apply bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden;
+}
+
+.nav-link {
+  @apply text-gray-700 hover:text-[#4D96FF] transition-colors duration-200;
+}
+
+.nav-link.active {
+  @apply text-[#4D96FF] font-medium;
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
